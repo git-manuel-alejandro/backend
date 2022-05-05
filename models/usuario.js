@@ -9,4 +9,11 @@ const UsuarioSchema = Schema({
   google: { type: Boolean, default: false },
 });
 
+UsuarioSchema.method("toJson", function () {
+  const { __v, _id, ...object } = this.toObject();
+
+  object.uid = _id;
+  return object;
+});
+
 module.exports = model("Usuario", UsuarioSchema);
